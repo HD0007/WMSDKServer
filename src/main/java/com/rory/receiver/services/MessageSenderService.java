@@ -31,7 +31,7 @@ public class MessageSenderService {
         // Add headers
         connection.setRequestProperty(HttpHeaders.CONTENT_TYPE, "application/json");
         connection.setRequestProperty(HttpHeaders.AUTHORIZATION, "Bearer " + EnvironmentalVariableRetriever.access_token);
-        System.out.println("Sending message to : "+MessageSenderService.toNumber);
+        
         // Build body
         JSONObject messageJSON = new JSONObject();
         messageJSON.put("messaging_product", "whatsapp");
