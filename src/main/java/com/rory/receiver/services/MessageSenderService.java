@@ -19,7 +19,7 @@ public class MessageSenderService {
     private static final String urlString = "https://graph.facebook.com/v13.0/" + EnvironmentalVariableRetriever.WAID + "/messages";
 
     // The number to send messages to. Hardcoded in for this example.
-    private static final String toNumber = "918806012333";
+    private static final String toNumber = "918005928367";
 
     public static ResponseEntity<String> sendMessage(String message) throws IOException {
         // Establish connection
