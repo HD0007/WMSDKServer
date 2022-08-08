@@ -57,7 +57,8 @@ public class GeneralController {
         System.out.println("Message extracted properly...");
 
         try {
-            return MessageSenderService.sendMessage(message);
+            String toPhoneNumber="";
+            return MessageSenderService.sendMessage(message,toPhoneNumber);
         } catch (MalformedURLException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (IOException e) {
@@ -68,7 +69,8 @@ public class GeneralController {
     @GetMapping(value="/sendTemplate")
     public ResponseEntity<String> sendTemplate(@RequestParam("template_name") String template_name){
         try {
-            return MessageSenderService.sendTemplate(template_name);
+            String toPhoneNumber="";
+            return MessageSenderService.sendTemplate(template_name, toPhoneNumber);
         } catch (JSONException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (IOException e){
