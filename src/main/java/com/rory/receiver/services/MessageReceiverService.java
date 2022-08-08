@@ -23,10 +23,11 @@ public class MessageReceiverService {
 
             for (int i = 0; i < messages.length(); i++) {
                 JSONObject message = messages.getJSONObject(i);
+                String fromNumber = message.getString("from");
                 JSONObject messageTextObject = message.getJSONObject("text");
                 String content = messageTextObject.getString("body");
                 System.out.println(content);
-                MessageSenderService.sendMessage("A wise man once said: " + content);
+                MessageSenderService.sendMessage("A wise man once said: " + content,fromNumber);
             }
             return new ResponseEntity<>("Message Received", HttpStatus.OK);
         } catch (JSONException | IOException e) {
