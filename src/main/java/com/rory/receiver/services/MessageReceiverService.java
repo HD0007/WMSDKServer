@@ -27,7 +27,39 @@ public class MessageReceiverService {
                 JSONObject messageTextObject = message.getJSONObject("text");
                 String content = messageTextObject.getString("body");
                 System.out.println(content);
-                MessageSenderService.sendMessage("A wise man once said: " + content,fromNumber);
+//                 MessageSenderService.sendMessage("A wise man once said: " + content,fromNumber);
+                                if(content.startsWith("LEAP INFYAR")) {
+                	MessageSenderService.sendMessage("Dear Requestor,\n"
+                			+ "\n"
+                			+ "Thanks for contacting PTC team. \n"
+                			+ "\n"
+                			+ "We will address your query at the earliest for CaseId:AR:00000070\n"
+                			+ "\n"
+                			+ "Your patience and co-operation is appreciated.\n"
+                			+ "\n"
+                			+ "Regards,\n"
+                			+ "PTC Team  \n"
+                			+ " ",fromNumber);
+                	System.out.println("CASE CREATED WITH :"+content);
+                }
+                else if(content.startsWith("LEAP INFYVR")) {
+                	MessageSenderService.sendMessage("Dear Requestor,\n"
+                			+ "\n"
+                			+ "Thanks for contacting PTC team. \n"
+                			+ "\n"
+                			+ "We will address your query at the earliest for CaseId:VR:00000070\n"
+                			+ "\n"
+                			+ "Your patience and co-operation is appreciated.\n"
+                			+ "\n"
+                			+ "Regards,\n"
+                			+ "PTC Team  \n"
+                			+ " ",fromNumber);
+                	System.out.println("CASE CREATED WITH :"+content);
+                }
+                else {
+                	MessageSenderService.sendMessage("THANK YOU FOR CONTACTING, WE CAN'T PROCESS YOUR REQUEST AT THIS TIME",fromNumber);
+                	System.out.println("NO PROCESS FOUND"+content);
+                }
             }
             return new ResponseEntity<>("Message Received", HttpStatus.OK);
         } catch (JSONException | IOException e) {
