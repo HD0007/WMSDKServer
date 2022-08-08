@@ -19,9 +19,9 @@ public class MessageSenderService {
     private static final String urlString = "https://graph.facebook.com/v13.0/" + EnvironmentalVariableRetriever.WAID + "/messages";
 
     // The number to send messages to. Hardcoded in for this example.
-    private static final String toNumber = "918005928367";
+//     private static final String toNumber = "";
 
-    public static ResponseEntity<String> sendMessage(String message) throws IOException {
+    public static ResponseEntity<String> sendMessage(String message,String toPhoneNumber) throws IOException {
         // Establish connection
         URL url = new URL(urlString);
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -35,7 +35,7 @@ public class MessageSenderService {
         // Build body
         JSONObject messageJSON = new JSONObject();
         messageJSON.put("messaging_product", "whatsapp");
-        messageJSON.put("to", MessageSenderService.toNumber);
+        messageJSON.put("to", toPhoneNumber);
 
         JSONObject textJSON = new JSONObject();
         textJSON.put("body", message);
@@ -50,7 +50,7 @@ public class MessageSenderService {
         return new ResponseEntity<>(connection.getResponseMessage(), HttpStatus.valueOf(connection.getResponseCode()));
     }
 
-    public static ResponseEntity<String> sendTemplate(String template_name) throws IOException {
+    public static ResponseEntity<String> sendTemplate(String template_name,String toPhoneNumber) throws IOException {
 
         // Establish connection
         URL url = new URL(MessageSenderService.urlString);
@@ -65,7 +65,7 @@ public class MessageSenderService {
         // Build body
         JSONObject messageJSON = new JSONObject();
         messageJSON.put("messaging_product", "whatsapp");
-        messageJSON.put("to", MessageSenderService.toNumber);
+        messageJSON.put("to", toPhoneNumber);
         messageJSON.put("type", "template");
 
         JSONObject templateJSON = new JSONObject();
